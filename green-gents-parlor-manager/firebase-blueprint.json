@@ -1,0 +1,41 @@
+{
+  "entities": {
+    "income": {
+      "title": "দৈনিক আয়",
+      "description": "পার্লারের দৈনিক আয়ের রেকর্ড।",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "amount": { "type": "number", "description": "আয়ের পরিমাণ।" },
+        "date": { "type": "string", "format": "date", "description": "আয়ের তারিখ (ISO ফরম্যাট)।" },
+        "notes": { "type": "string", "description": "দিনের সম্পর্কে ঐচ্ছিক নোট।" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["amount", "date"]
+    },
+    "expense": {
+      "title": "দৈনিক ব্যয়",
+      "description": "পার্লারের দৈনিক ব্যয়ের রেকর্ড।",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "amount": { "type": "number", "description": "ব্যয়ের পরিমাণ।" },
+        "date": { "type": "string", "format": "date", "description": "ব্যয়ের তারিখ (ISO ফরম্যাট)।" },
+        "notes": { "type": "string", "description": "ব্যয় সম্পর্কে ঐচ্ছিক নোট।" },
+        "category": { "type": "string", "description": "ব্যয়ের ধরন।" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["amount", "date"]
+    }
+  },
+  "firestore": {
+    "/incomes/{incomeId}": {
+      "schema": "income",
+      "description": "দৈনিক আয়ের রেকর্ডের সংগ্রহ।"
+    },
+    "/expenses/{expenseId}": {
+      "schema": "expense",
+      "description": "দৈনিক ব্যয়ের রেকর্ডের সংগ্রহ।"
+    }
+  }
+}
